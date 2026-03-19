@@ -19,12 +19,13 @@ export type Project = {
   likes: number;
   date: string;
   tags: string[];
+  url?: string;
 };
 
 export const projects: Project[] = [
   {
     id: "1",
-    title: "SignalStack Cloud",
+    title: "norwoodgulf",
     description:
       "A multi-tenant observability platform for engineering teams, combining logs, traces, and alert routing into one fast incident workspace.",
     image: project1,
@@ -37,6 +38,7 @@ export const projects: Project[] = [
     likes: 234,
     date: "2026-01-15",
     tags: ["OBSERVABILITY", "PLATFORM", "B2B"],
+    url: "https://norwoodgulf.com",
   },
   {
     id: "2",

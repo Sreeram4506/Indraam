@@ -69,9 +69,21 @@ const ProjectDetail = () => {
               <Stat label="Progress" value={`${project.progress}%`} />
             </div>
 
-            <button className="btn-premium w-fit mt-auto">
-              Request Case Study
-            </button>
+            <div className="flex flex-wrap gap-4 mt-auto">
+              <button className="btn-premium w-fit border-black/20 text-black hover:bg-black hover:text-white">
+                Request Case Study
+              </button>
+              {project.url && (
+                <a 
+                  href={project.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn-premium w-fit border-black/20 text-black hover:bg-black hover:text-white"
+                >
+                  Visit Project
+                </a>
+              )}
+            </div>
           </motion.div>
 
           <motion.div

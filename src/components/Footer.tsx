@@ -59,10 +59,10 @@ export const Footer = () => (
           className="mt-12 flex flex-col items-center justify-center gap-5 md:mt-14 md:flex-row md:gap-6"
         >
           <a
-            href="mailto:hello@indraam.dev"
+            href="mailto:hello@indraam.com"
             className="group relative overflow-hidden text-[1.15rem] font-medium text-white/70 transition-colors duration-300 hover:text-white sm:text-[1.4rem] md:text-[2rem]"
           >
-            <TextReveal text="hello@indraam.dev" duration={0.9} />
+            <TextReveal text="hello@indraam.com" duration={0.9} />
             <span className="absolute bottom-0 left-0 h-[1px] w-0 bg-white transition-all duration-500 group-hover:w-full" />
           </a>
         </motion.div>
@@ -74,7 +74,7 @@ export const Footer = () => (
           transition={{ delay: 0.6, duration: 0.6 }}
           className="mt-10 flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
         >
-          <a href="tel:+441234567890" className="btn-pill w-full justify-center sm:w-auto">
+          <a href="tel:+12036402437" className="btn-pill w-full justify-center sm:w-auto">
             Call Us
           </a>
           <a href="#contact" className="btn-pill w-full justify-center sm:w-auto">
@@ -99,7 +99,7 @@ export const Footer = () => (
           <p className="max-w-sm text-[12px] leading-[1.8] text-white/35">
             Building digital visions for a connected world.
             <br />
-            Based in Indraam, UK.
+            US based company.
           </p>
         </motion.div>
 
@@ -111,11 +111,11 @@ export const Footer = () => (
           className="flex flex-col gap-4"
         >
           <span className="text-[10px] uppercase tracking-[0.2em] text-white/30">Get in touch</span>
-          <a href="mailto:hello@indraam.dev" className="text-[12px] text-white/50 transition-colors hover:text-white">
-            hello@indraam.dev
+          <a href="mailto:hello@indraam.com" className="text-[12px] text-white/50 transition-colors hover:text-white">
+            hello@indraam.com
           </a>
-          <a href="tel:+441234567890" className="text-[12px] text-white/50 transition-colors hover:text-white">
-            +44 1234 567 890
+          <a href="tel:+12036402437" className="text-[12px] text-white/50 transition-colors hover:text-white">
+            +1 (203) 640-2437
           </a>
         </motion.div>
 
