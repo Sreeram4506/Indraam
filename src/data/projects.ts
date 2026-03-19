@@ -1,4 +1,4 @@
-import project1 from "@/assets/project-1.jpg";
+import project1 from "@/assets/norwood-gulf.png";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 import project4 from "@/assets/project-4.jpg";
@@ -20,25 +20,27 @@ export type Project = {
   date: string;
   tags: string[];
   url?: string;
+  features?: string[];
 };
 
 export const projects: Project[] = [
   {
     id: "1",
-    title: "norwoodgulf",
+    title: "Norwood Gulf",
     description:
-      "A multi-tenant observability platform for engineering teams, combining logs, traces, and alert routing into one fast incident workspace.",
+      "A premier, community-focused auto repair and tire service center specializing in advanced technical diagnostics and full-scale repair with over 80 years of combined team expertise.",
     image: project1,
     category: "platform",
     status: "ongoing",
-    stack: "Next.js, Go, ClickHouse",
-    timeline: "14 week build",
-    impact: "42% faster incident triage",
-    progress: 68,
-    likes: 234,
-    date: "2026-01-15",
-    tags: ["OBSERVABILITY", "PLATFORM", "B2B"],
+    stack: "Technical Diagnostics, Engine Performance, State Inspections",
+    timeline: "Community Staple Since 1993",
+    impact: "80+ Years of Combined Excellence",
+    progress: 100,
+    likes: 850,
+    date: "2026-03-20",
+    tags: ["AUTO REPAIR", "DIAGNOSTICS", "COMMUNITY"],
     url: "https://norwoodgulf.com",
+    features: ["Brake Repair", "Oil Changes", "Engine Diagnostics", "Transmission Service", "Tire Services", "AC & Climate"],
   },
   {
     id: "2",

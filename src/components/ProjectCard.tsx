@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Heart, Share2, Bookmark } from "lucide-react";
+import { Share2, Bookmark } from "lucide-react";
 import { type Project } from "@/data/projects";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,6 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard = ({ project }: ProjectCardProps) => {
-  const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);
   const navigate = useNavigate();
 
@@ -83,9 +82,6 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
         className="flex gap-4 py-4"
       >
-        <button onClick={() => setLiked(!liked)} className="hover:scale-110 transition-transform ease-quintic">
-          <Heart className={`w-5 h-5 ${liked ? "fill-accent text-accent" : "text-foreground"}`} />
-        </button>
         <button className="hover:scale-110 transition-transform ease-quintic">
           <Share2 className="w-5 h-5 text-foreground" />
         </button>
@@ -101,7 +97,6 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.7, delay: 0.25, ease: [0.23, 1, 0.32, 1] }}
       >
-        <p className="font-mono-meta mb-2">{project.likes + (liked ? 1 : 0)} reactions</p>
         <p className="text-sm leading-relaxed text-muted-foreground max-w-[50ch]">
           <span className="font-semibold text-foreground mr-2">Tech Work</span>
           {project.description}

@@ -68,6 +68,20 @@ const ProjectDetail = () => {
               <Stat label="Impact" value={project.impact} />
               <Stat label="Progress" value={`${project.progress}%`} />
             </div>
+            
+            {project.features && project.features.length > 0 && (
+              <div className="mb-16">
+                <p className="text-[10px] uppercase tracking-widest opacity-40 mb-6">Expert Services & Specialties</p>
+                <div className="grid grid-cols-2 gap-x-12 gap-y-3">
+                  {project.features.map(feature => (
+                    <div key={feature} className="flex items-center gap-3">
+                      <div className="w-1.5 h-1.5 bg-[#F58220] rounded-full" />
+                      <span className="text-[12px] opacity-70 border-b border-transparent hover:border-black/10 transition-colors cursor-default">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div className="flex flex-wrap gap-4 mt-auto">
               <button className="btn-premium w-fit border-black/20 text-black hover:bg-black hover:text-white">
