@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform, useMotionValue, useSpring, useMotionTe
 import { useEffect, useRef, useState } from "react";
 import heroBuilding from "@/assets/hero-building.jpg";
 
-const introEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const introEase: [number, number, number, number] = [0.16, 1, 0.3, 1]; // More organic weighted ease
 
 export const HeroSection = () => {
   const containerRef = useRef<HTMLElement>(null);
@@ -256,23 +256,23 @@ export const HeroSection = () => {
           style={{ x: headlineParallaxX, y: headlineParallaxY }}
           className="w-full max-w-[1500px] transform-gpu [will-change:transform]"
         >
-          <div className="mx-auto w-full max-w-[13.5ch] px-2 text-center sm:max-w-[14.75ch] md:max-w-[18.5ch] lg:max-w-none">
-            <div className="overflow-visible py-[0.08em]">
+          <div className="mx-auto w-full px-5 text-center lg:max-w-none">
+            <div className="overflow-visible py-[0.12em]">
               <motion.h1
                 initial={{ y: "112%", opacity: 0, filter: "blur(12px)" }}
                 animate={{ y: "0%", opacity: 1, filter: "blur(0px)" }}
                 transition={{ duration: 1.2, delay: 0.66, ease: introEase }}
-                className="font-serif text-[clamp(2.9rem,13.2vw,9.2rem)] leading-[1.02] tracking-[-0.045em] text-[#fffaf6] drop-shadow-[0_10px_30px_rgba(255,248,240,0.18)] lg:whitespace-nowrap"
+                className="font-serif text-[clamp(3.5rem,15vw,11.5rem)] leading-[0.98] tracking-[-0.05em] text-[#fffaf6] drop-shadow-[0_15px_45px_rgba(255,248,240,0.22)]"
               >
                 The <span className="italic">creative</span> studio
               </motion.h1>
             </div>
-            <div className="overflow-visible py-[0.08em]">
+            <div className="overflow-visible py-[0.12em]">
               <motion.div
                 initial={{ y: "112%", opacity: 0, filter: "blur(12px)" }}
                 animate={{ y: "0%", opacity: 1, filter: "blur(0px)" }}
                 transition={{ duration: 1.2, delay: 0.82, ease: introEase }}
-                className="font-serif text-[clamp(2.9rem,13.2vw,9.2rem)] leading-[1.02] tracking-[-0.045em] text-[#fffaf6] drop-shadow-[0_10px_30px_rgba(255,248,240,0.18)] lg:whitespace-nowrap"
+                className="font-serif text-[clamp(3.5rem,15vw,11.5rem)] leading-[0.98] tracking-[-0.05em] text-[#fffaf6] drop-shadow-[0_15px_45px_rgba(255,248,240,0.22)]"
               >
                 you&apos;ve been eager to <span className="italic">meet.</span>
               </motion.div>

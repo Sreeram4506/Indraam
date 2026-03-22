@@ -81,7 +81,7 @@ const PageLoader = () => {
             </div>
             <div className="overflow-hidden">
               <motion.span
-                className="text-[clamp(3.5rem,12vw,10rem)] font-bold leading-none inline-block text-white"
+                className="text-[clamp(2.5rem,12vw,10rem)] font-bold leading-none inline-block text-white"
                 initial={{ y: '100%' }}
                 animate={{ y: '0%' }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}

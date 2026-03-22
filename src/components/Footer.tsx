@@ -43,7 +43,7 @@ export const Footer = () => (
             viewport={{ once: true }}
             transition={{ duration: 1.1, ease: [0.23, 1, 0.32, 1] }}
             className="font-bold leading-[0.9] tracking-tighter text-white"
-            style={{ fontSize: "clamp(2.8rem, 8vw, 8rem)" }}
+            style={{ fontSize: "clamp(2rem, 8.5vw, 8rem)" }}
           >
             Got a <span className="font-serif italic font-normal text-white/60">vision?</span>
             <br />

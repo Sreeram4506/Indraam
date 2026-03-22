@@ -85,7 +85,7 @@ export const FeaturedProjects = () => {
                   </span>
                   <h3
                     className="font-bold leading-[0.9] tracking-tighter text-white transition-all duration-500 group-hover:italic group-hover:text-[#f3e4d8]"
-                    style={{ fontSize: "clamp(2.4rem, 10vw, 6rem)" }}
+                    style={{ fontSize: "clamp(1.8rem, 9.5vw, 6rem)" }}
                   >
                     {project.title}
                   </h3>

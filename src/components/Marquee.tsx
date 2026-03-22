@@ -7,7 +7,7 @@ interface MarqueeProps {
 
 const Marquee: React.FC<MarqueeProps> = ({ text, speed = 20 }) => {
   return (
-    <div className="w-full overflow-hidden py-2 border-y border-white/10 uppercase tracking-[0.2em] text-[10px]">
+    <div className="w-full overflow-hidden py-2 border-y border-white/10 uppercase tracking-[0.2em] text-[clamp(10px,2vw,12px)]">
       <div 
         className="marquee-content"
         style={{ animationDuration: `${speed}s` }}

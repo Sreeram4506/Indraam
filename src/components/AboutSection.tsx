@@ -366,7 +366,7 @@ const ScrollLine = ({ scrollYProgress, index, totalLines, children }: ScrollLine
     <div>
       <motion.div
         style={{ x, opacity }}
-        className="max-w-[11ch] whitespace-normal text-[clamp(2rem,9vw,4.2rem)] leading-[1.08] tracking-tighter text-white md:max-w-none"
+        className="max-w-[15ch] whitespace-normal break-words text-[clamp(1.6rem,8.5vw,4.2rem)] leading-[1.08] tracking-tighter text-white sm:max-w-[20ch] md:max-w-none"
       >
         {children}
       </motion.div>

@@ -1,29 +1,51 @@
 import { useEffect } from 'react';
+import Lenis from '@studio-freight/lenis';
 
 export const useSmoothScroll = () => {
   useEffect(() => {
-    const html = document.documentElement;
-    const body = document.body;
+    // Smooth inertial scrolling with Lenis
+    const lenis = new Lenis({
+      duration: 1.4,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // expoOut
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1.1,
+      touchMultiplier: 2,
+    });
 
-    // Enable smooth scrolling
-    html.style.scrollBehavior = 'smooth';
-    body.style.scrollBehavior = 'smooth';
+    const raf = (time: number) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
 
-    // Add custom easing for more natural feel
+    requestAnimationFrame(raf);
+
+    // Style for the scrollbar to match the design
     const style = document.createElement('style');
     style.textContent = `
-      html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 0;
+      html.lenis {
+        height: auto;
       }
       
-      body {
-        scroll-behavior: smooth;
+      .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
       }
       
-      /* Custom scrollbar styling */
+      .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+      
+      .lenis.lenis-stopped {
+        overflow: hidden;
+      }
+      
+      .lenis.lenis-scrolling iframe {
+        pointer-events: none;
+      }
+      
       ::-webkit-scrollbar {
-        width: 8px;
+        width: 10px;
       }
       
       ::-webkit-scrollbar-track {
@@ -31,19 +53,20 @@ export const useSmoothScroll = () => {
       }
       
       ::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.18);
+        border: 2px solid #080808;
+        border-radius: 20px;
+        transition: background 0.3s;
       }
       
       ::-webkit-scrollbar-thumb:hover {
-        background: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.28);
       }
     `;
     document.head.appendChild(style);
 
     return () => {
-      html.style.scrollBehavior = '';
-      body.style.scrollBehavior = '';
+      lenis.destroy();
       document.head.removeChild(style);
     };
   }, []);

@@ -69,7 +69,8 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /* Lenis needs this to be unset or auto */
+    scroll-behavior: auto !important;
   }
 }
 
@@ -85,12 +86,12 @@
   }
 
   .nav-link {
-    @apply text-[11px] uppercase tracking-[0.2em] font-medium transition-all duration-300 hover:opacity-100 opacity-50 relative py-2 text-white;
+    @apply text-[11px] uppercase tracking-[0.2em] font-medium transition-all duration-500 hover:opacity-100 opacity-50 relative py-2 text-white;
   }
 
   .nav-link::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300;
+    @apply absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-700;
   }
 
   .nav-link:hover::after {
@@ -99,13 +100,13 @@
 
   .btn-premium {
     @apply inline-flex items-center justify-center border border-white/30 px-6 py-3.5 text-[11px] uppercase tracking-[0.2em] font-medium 
-           transition-all duration-500 bg-transparent text-white 
+           transition-all duration-700 bg-transparent text-white 
            hover:bg-white hover:text-black hover:border-white sm:px-8 sm:py-4;
   }
 
   .btn-pill {
     @apply inline-flex items-center justify-center border border-white/20 rounded-full px-5 py-2.5 text-[10px] uppercase tracking-[0.2em] font-medium 
-           transition-all duration-500 bg-transparent text-white/70 
+           transition-all duration-700 bg-transparent text-white/70 
            hover:bg-white hover:text-black hover:border-white sm:px-6;
   }
 
@@ -123,14 +124,15 @@
 
 @layer utilities {
   .text-huge {
-    @apply text-[clamp(3rem,10vw,8rem)] font-bold leading-[0.9];
+    @apply text-[clamp(2.2rem,10vw,8rem)] font-bold leading-[0.9] break-words;
   }
 
   .text-display {
-    font-size: clamp(3.5rem, 12vw, 9.5rem);
+    font-size: clamp(2.5rem, 12vw, 9.5rem);
     font-weight: 800;
     line-height: 0.9;
     letter-spacing: -0.04em;
+    @apply break-words;
   }
   
   .reveal-text {
