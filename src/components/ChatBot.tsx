@@ -78,10 +78,10 @@ export const ChatBot = () => {
     setIsTyping(true);
 
     try {
-      // Calling local backend to handle the proxy for security and CORS
-      const BACKEND_URL = "http://localhost:3001/api/chat";
+      // Relative URL to work across environments (Local Proxy & Vercel Serverless)
+      const API_ENDPOINT = "/api/chat";
 
-      const response = await fetch(BACKEND_URL, {
+      const response = await fetch(API_ENDPOINT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -98,7 +98,6 @@ export const ChatBot = () => {
           ],
           temperature: 0.2,
           top_p: 0.7,
-          max_tokens: 1024,
         }),
       });
 
