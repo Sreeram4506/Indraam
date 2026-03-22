@@ -22,6 +22,13 @@ export default async function handler(req, res) {
     const NVIDIA_API_KEY = process.env.VITE_NVIDIA_API_KEY || process.env.NVIDIA_API_KEY;
     const NVIDIA_API_URL = "https://integrate.api.nvidia.com/v1/chat/completions";
 
+    if (!NVIDIA_API_KEY) {
+      console.error("CRITICAL: NVIDIA_API_KEY is missing from environment variables.");
+      return res.status(500).json({ 
+        error: "Server Configuration Error: API Key missing. Please add VITE_NVIDIA_API_KEY to your deployment environment variables." 
+      });
+    }
+
     const response = await fetch(NVIDIA_API_URL, {
       method: "POST",
       headers: {
