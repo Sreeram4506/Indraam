@@ -174,4 +174,13 @@
   .glow-cyan {
     box-shadow: 0 0 60px rgba(0, 245, 255, 0.2), 0 0 120px rgba(0, 245, 255, 0.08);
   }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
