@@ -9,22 +9,24 @@ interface Message {
   timestamp: Date;
 }
 
-const PRESET_RESPONSES: Record<string, string> = {
-  "hello": "Hello! I'm the Indraam digital assistant. How can I help you build your vision today?",
-  "hi": "Hi there! Looking to start a new project or just exploring our work?",
-  "services": "We offer Strategy, Design, Development, and Digital Marketing. Each tailored to create premium digital experiences.",
-  "contact": "You can reach us at hello@indraam.com or click the 'Meet Us' button in the footer!",
-  "projects": "Our recent work includes SAAS platforms, AI integrations, and high-performance branding systems.",
-  "about": "Indraam is a creative studio dedicated to crafting ambitious digital experiences for a connected world.",
-  "default": "That's interesting! I'd love to chat more about that. Perhaps our team can provide a deeper dive into how we can help?"
-};
+const SYSTEM_PROMPT = `
+You are the Indraam digital assistant. Indraam is a premium US-based creative studio with over 6 years of experience and 48+ successfully delivered projects. 
+We specialize in:
+- Strategy (Positioning, Roadmaps, Market Research).
+- Design (Brand Identity, UI/UX, Art Direction).
+- Development (Frontend, Backend, E-commerce, Performance).
+- Digital Marketing (SEO, Social Media, Analytics).
+Our design philosophy is premium, intuitive, and memorable. We blend strategic thinking with top-tier execution.
+You should be professional, helpful, and maintain a high-end tone. Keep responses relatively concise but inspiring.
+If asked for contact, reference hello@indraam.com or the footer links.
+`.trim();
 
 export const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
-      text: "Welcome to Indraam. I'm your digital guide. Ask me anything about our studio!",
+      text: "Welcome to Indraam. My intelligence was just upgraded with a live brain! How can I help you today?",
       sender: "bot",
       timestamp: new Date(),
     },
@@ -39,7 +41,7 @@ export const ChatBot = () => {
     }
   }, [messages, isTyping]);
 
-  const handleSendMessage = (e?: React.FormEvent) => {
+  const handleSendMessage = async (e?: React.FormEvent) => {
     e?.preventDefault();
     if (!inputValue.trim()) return;
 
@@ -54,28 +56,57 @@ export const ChatBot = () => {
     setInputValue("");
     setIsTyping(true);
 
-    // Simulate bot response
-    setTimeout(() => {
-      const lowerInput = inputValue.toLowerCase();
-      let botResponse = PRESET_RESPONSES.default;
-      
-      for (const key in PRESET_RESPONSES) {
-        if (lowerInput.includes(key) && key !== "default") {
-          botResponse = PRESET_RESPONSES[key];
-          break;
-        }
-      }
+    try {
+      const apiKey = import.meta.env.VITE_NVIDIA_API_KEY;
+      const apiUrl = import.meta.env.VITE_NVIDIA_API_URL;
+
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model: "meta/llama-3.1-8b-instruct",
+          messages: [
+            { role: "system", content: SYSTEM_PROMPT },
+            ...messages.slice(-4).map(m => ({
+              role: m.sender === "bot" ? "assistant" : "user",
+              content: m.text
+            })),
+            { role: "user", content: inputValue }
+          ],
+          temperature: 0.2,
+          top_p: 0.7,
+          max_tokens: 1024,
+        }),
+      });
+
+      if (!response.ok) throw new Error("API call failed");
+
+      const data = await response.json();
+      const botResponse = data.choices[0].message.content;
 
       const botMessage: Message = {
-        id: (Date.now() + 1).toString(),
+        id: Date.now().toString(),
         text: botResponse,
         sender: "bot",
         timestamp: new Date(),
       };
 
       setMessages((prev) => [...prev, botMessage]);
+    } catch (error) {
+      console.error("Chat error:", error);
+      const errorMessage: Message = {
+        id: Date.now().toString(),
+        text: "I'm sorry, I'm having a bit of trouble connecting to my brain right now. Please try again or reach out to us at hello@indraam.com.",
+        sender: "bot",
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
       setIsTyping(false);
-    }, 1500);
+    }
   };
 
   return (
