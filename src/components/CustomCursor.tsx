@@ -59,7 +59,13 @@ const CustomCursor = () => {
         target.closest("a, button, [role='button']") ||
         target.style?.cursor === "pointer";
 
-      if (closestProject) {
+      const isInput = target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable;
+
+      if (isInput) {
+        setIsVisible(false);
+        setIsHovering(false);
+        setIsProject(false);
+      } else if (closestProject) {
         const sizePreference = closestProject.getAttribute("data-cursor-size");
         setIsProject(true);
         setIsHovering(false);
